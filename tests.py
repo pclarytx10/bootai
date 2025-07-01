@@ -1,24 +1,20 @@
-from functions.get_files_info import get_files_info
-
+from functions.get_file_content import get_file_content
 
 def test():
-    result = get_files_info("calculator", ".")
-    print("Result for current directory:")
+    print("Test 1: get_file_content('calculator', 'main.py')")
+    result = get_file_content("calculator", "main.py")
     print(result)
-    print("")
+    print()
 
-    result = get_files_info("calculator", "pkg")
-    print("Result for 'pkg' directory:")
+    print("Test 2: get_file_content('calculator', 'pkg/calculator.py')")
+    result = get_file_content("calculator", "pkg/calculator.py")
     print(result)
+    print()
 
-    result = get_files_info("calculator", "/bin")
-    print("Result for '/bin' directory:")
+    print("Test 3: get_file_content('calculator', '/bin/cat') (should error)")
+    result = get_file_content("calculator", "/bin/cat")
     print(result)
-
-    result = get_files_info("calculator", "../")
-    print("Result for '../' directory:")
-    print(result)
-
+    print()
 
 if __name__ == "__main__":
     test()
