@@ -3,18 +3,19 @@ import os
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
-
+from prompts import system_prompt
 
 def main():
     load_dotenv()
-
+    
     args = sys.argv[1:]
 
     if not args:
         print("AI Code Assistant")
-        print('\nUsage: python main.py "your prompt here"')
-        print('Example: python main.py "How do I build a calculator app?"')
+        print('\nUsage: python main.py "your prompt here" [--verbose]')
+        print('Example: python main.py "How do I fix the calculator?"')
         sys.exit(1)
+        
     user_prompt = " ".join(args)
 
     # Check for --verbose flag
@@ -36,9 +37,11 @@ def main():
 
 
 def generate_content(client, messages, user_prompt, verbose):
+
     response = client.models.generate_content(
         model="gemini-2.0-flash-001",
         contents=messages,
+        config=types.GenerateContentConfig(system_instruction=system_prompt),
     )
 
     if verbose:
