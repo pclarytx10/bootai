@@ -1,5 +1,3 @@
-# main.py
-
 import sys
 from pkg.calculator import Calculator
 from pkg.render import render
@@ -7,6 +5,11 @@ from pkg.render import render
 
 def main():
     calculator = Calculator()
+    # Test case
+    test_expression = "3 + 7 * 2"
+    test_result = calculator.evaluate(test_expression)
+    print(f"Test: {test_expression} = {test_result}")
+
     if len(sys.argv) <= 1:
         print("Calculator App")
         print('Usage: python main.py "<expression>"')
